@@ -1,8 +1,8 @@
 {
   "name": "proyectomovie",
   "version": "1.0.0",
-  "description": "proyectmovie",
-  "main": "index.js",
+  "description": "proyecto movie",
+  "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -10,8 +10,11 @@
     "type": "git",
     "url": "git+https://github.com/jefermar/proyectoMovie.git"
   },
-  "author": "jeff",
-  "license": "ISC",
+  "keywords": [
+    "api"
+  ],
+  "author": "Jefferson Martinez",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/jefermar/proyectoMovie/issues"
   },
