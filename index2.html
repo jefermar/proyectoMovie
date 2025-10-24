@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineHub - Descubre Películas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <h1 class="logo">🎬 CineHub</h1>
+                <div class="search-container">
+                    <input 
+                        type="text" 
+                        id="searchInput" 
+                        class="search-input" 
+                        placeholder="Buscar películas..."
+                    >
+                    <button id="searchBtn" class="search-btn">Buscar</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <section class="hero">
+                <h2 class="hero-title">Películas Populares</h2>
+                <p class="hero-subtitle">Descubre las películas más populares del momento</p>
+            </section>
+
+            <div class="filters">
+                <button class="filter-btn active" data-category="popular">Populares</button>
+                <button class="filter-btn" data-category="top_rated">Mejor Valoradas</button>
+                <button class="filter-btn" data-category="upcoming">Próximos Estrenos</button>
+                <button class="filter-btn" data-category="now_playing">En Cartelera</button>
+            </div>
+
+            <div id="loading" class="loading">
+                <div class="spinner"></div>
+                <p>Cargando películas...</p>
+            </div>
+
+            <div id="moviesGrid" class="movies-grid"></div>
+
+            <div id="noResults" class="no-results" style="display: none;">
+                <p>No se encontraron películas</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal para detalles de película -->
+    <div id="movieModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeModal">&times;</button>
+            <div id="movieDetails"></div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 CineHub. Powered by TMDB API</p>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>

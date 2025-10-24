@@ -1,0 +1,2 @@
+# ignore secret API keys
+src/secret.js
