@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎬 CineExplorer - Películas Populares</title>
+    <link rel="stylesheet" href="styles/style2.css">
+</head>
+<body>
+
+    <header class="header">
+        <h1>CineExplorer 🍿</h1>
+        <form id="search-form">
+            <input type="text" id="search-input" placeholder="Buscar películas...">
+            <button type="submit">Buscar</button>
+        </form>
+    </header>
+
+    <main class="main-content">
+        <h2>Películas Populares</h2>
+        <div id="movies-container" class="movies-grid">
+            <p id="loading-message">Cargando películas...</p>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2025 CineExplorer. Datos provistos por la API de The Movie Database (TMDB).</p>
+    </footer>
+
+    <script>
+        // *** CONFIGURACIÓN DE LA API ***
+        const API_KEY = 'TU_API_KEY_AQUÍ'; // ⚠️ Reemplaza con tu clave API real (ej: TMDB)
+        const BASE_URL = 'https://api.themoviedb.org/3';
+        const IMG_URL = 'https://image.tmdb.org/t/p/w500';
+
+        const moviesContainer = document.getElementById('movies-container');
+        const loadingMessage = document.getElementById('loading-message');
+        const searchForm = document.getElementById('search-form');
+        const searchInput = document.getElementById('search-input');
+        
+        // Función para crear la tarjeta de película
+        function createMovieCard(movie) {
+            const { title, poster_path, overview, vote_average, release_date } = movie;
+            const movieCard = document.createElement('div');
+            movieCard.classList.add('movie-card');
+            
+            // Determinar la imagen a mostrar
+            const poster = poster_path 
+                ? `${IMG_URL}${poster_path}` 
+                : 'https://via.placeholder.com/500x750?text=No+Image'; // Placeholder si no hay póster
+
+            movieCard.innerHTML = `
+                <img src="${poster}" alt="${title}">
+                <div class="movie-info">
+                    <h3>${title}</h3>
+                    <div class="details">
+                        <span class="rating ${getRatingColor(vote_average)}">${vote_average.toFixed(1)}</span>
+                        <span class="date">${release_date ? release_date.substring(0, 4) : 'N/A'}</span>
+                    </div>
+                    <div class="overview">
+                        <h4>Sinopsis</h4>
+                        <p>${overview || 'No hay sinopsis disponible.'}</p>
+                    </div>
+                </div>
+            `;
+            
+            moviesContainer.appendChild(movieCard);
+        }
+
+        // Función para asignar color al rating
+        function getRatingColor(rating) {
+            if (rating >= 8) {
+                return 'green';
+            } else if (rating >= 5) {
+                return 'orange';
+            } else {
+                return 'red';
+            }
+        }
+
+        // Función para cargar películas
+        async function fetchMovies(url) {
+            moviesContainer.innerHTML = ''; // Limpiar contenedor
+            loadingMessage.style.display = 'block'; // Mostrar mensaje de carga
+
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+
+                loadingMessage.style.display = 'none'; // Ocultar mensaje de carga
+
+                if (data.results && data.results.length > 0) {
+                    data.results.forEach(movie => createMovieCard(movie));
+                } else {
+                    moviesContainer.innerHTML = '<p class="no-results">No se encontraron películas. Intenta otra búsqueda.</p>';
+                }
+
+            } catch (error) {
+                console.error("Error al obtener las películas:", error);
+                loadingMessage.style.display = 'none'; 
+                moviesContainer.innerHTML = '<p class="error-message">Error al cargar los datos. Verifica tu conexión o la clave API.</p>';
+            }
+        }
+
+        // URL para películas populares al cargar la página
+        const popularMoviesUrl = `${BASE_URL}/movie/popular?api_key=${API_KEY}&language=es-ES&page=1`;
+
+        // Cargar películas populares al iniciar
+        fetchMovies(popularMoviesUrl);
+
+        // Manejador de búsqueda
+        searchForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const searchTerm = searchInput.value.trim();
+
+            if (searchTerm) {
+                const searchUrl = `${BASE_URL}/search/movie?api_key=${API_KEY}&query=${searchTerm}&language=es-ES&page=1`;
+                fetchMovies(searchUrl);
+            } else {
+                // Si la búsqueda está vacía, mostrar populares de nuevo
+                fetchMovies(popularMoviesUrl); 
+            }
+        });
+
+    </script>
+</body>
+</html>

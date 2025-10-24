@@ -1,46 +1,64 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Project Movies 🎬</title>
-  <link rel="stylesheet" href="styles/app.css" />
-</head>
-<body>
-  <header class="header">
-    <div class="logo">
-      <span class="glow">Project</span>Movies
-    </div>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project Movies 🎬</title>
+    <link rel="stylesheet" href="styles/app.css" />
+  </head>
 
-    <nav class="nav">
-      <a href="#">Inicio</a>
-      <a href="#">Populares</a>
-      <a href="#">Tendencias</a>
-      <a href="#">Favoritos</a>
-    </nav>
+  <body>
+    <header class="header">
+      <div class="logo">
+        <span class="glow">Project</span>Movies
+      </div>
 
-    <div class="search-container">
-      <input type="text" id="searchInput" placeholder="Buscar película..." />
-    </div>
-  </header>
+      <nav class="nav" id="nav">
+        <a href="#/" class="nav-link active">Inicio</a>
+        <a href="#/populares" class="nav-link">Populares</a>
+        <a href="#/tendencias" class="nav-link">Tendencias</a>
+        <a href="#/favoritos" class="nav-link">Favoritos</a>
+      </nav>
 
-  <section class="hero">
-    <div class="overlay"></div>
-    <div class="hero-content">
-      <h1>Explora el Futuro del Cine</h1>
-      <p>Descubre, guarda y comenta las mejores películas del momento.</p>
-      <button class="btn-glow">Explorar ahora</button>
-    </div>
-  </section>
+      <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Buscar película..." />
+      </div>
+    </header>
 
-  <main id="app" class="movie-grid">
-    <!-- Aquí se insertarán las películas dinámicamente -->
-  </main>
+    <section class="hero" id="hero">
+      <div class="overlay"></div>
+      <div class="hero-content">
+        <h1>Explora el Futuro del Cine</h1>
+        <p>Descubre, guarda y comenta las mejores películas del momento.</p>
+        <button class="btn-glow" id="exploreBtn">Explorar ahora</button>
+      </div>
+    </section>
 
-  <footer class="footer">
-    <p>© 2025 ProjectMovies — Proyecto Futurista de Jeff</p>
-  </footer>
+    <main id="app" class="movie-grid">
+      <!-- Contenido dinámico cargado por SPA -->
+    </main>
 
-  <script type="module" src="src/main.js"></script>
-</body>
+    <footer class="footer">
+      <p>© 2025 ProjectMovies — Proyecto Futurista de Jeff</p>
+    </footer>
+
+    <script type="module">
+      import { router } from "./src/main.js";
+
+      // Enlazar navegación SPA
+      window.addEventListener("hashchange", router);
+      window.addEventListener("load", router);
+
+      // Scroll suave al cambiar sección
+      document.querySelectorAll(".nav-link").forEach((link) => {
+        link.addEventListener("click", () => {
+          document
+            .querySelectorAll(".nav-link")
+            .forEach((l) => l.classList.remove("active"));
+          link.classList.add("active");
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+      });
+    </script>
+  </body>
 </html>

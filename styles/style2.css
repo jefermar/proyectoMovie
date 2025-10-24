@@ -1,0 +1,224 @@
+/* Variables de color para tema oscuro/cine */
+:root {
+    --primary-color: #e50914; /* Rojo Netflix/Cine */
+    --secondary-color: #f4f4f4; /* Texto claro */
+    --background-color: #141414; /* Fondo oscuro */
+    --card-background: #282828; /* Fondo de tarjeta un poco más claro */
+    --text-color: #f4f4f4;
+    --shadow-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Estilos Generales */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+/* Header (Encabezado) */
+.header {
+    background-color: var(--card-background);
+    color: var(--primary-color);
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 6px var(--shadow-color);
+}
+
+.header h1 {
+    font-size: 2em;
+    letter-spacing: 1px;
+}
+
+/* Formulario de Búsqueda */
+#search-form {
+    display: flex;
+}
+
+#search-input {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px 0 0 5px;
+    font-size: 1em;
+    width: 250px;
+    background-color: #333;
+    color: var(--text-color);
+}
+
+#search-input::placeholder {
+    color: #aaa;
+}
+
+#search-form button {
+    padding: 10px 15px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+#search-form button:hover {
+    background-color: #ff3f47;
+}
+
+/* Main Content (Contenido Principal) */
+.main-content {
+    padding: 20px 40px;
+}
+
+.main-content h2 {
+    color: var(--secondary-color);
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--primary-color);
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+/* Contenedor de Películas (Grid) */
+.movies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Diseño responsivo */
+    gap: 30px;
+    padding: 20px 0;
+}
+
+/* Tarjeta de Película */
+.movie-card {
+    background-color: var(--card-background);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 8px 15px var(--shadow-color);
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+}
+
+.movie-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 15px 25px var(--shadow-color);
+}
+
+.movie-card img {
+    width: 100%;
+    height: 380px; /* Altura fija para el póster */
+    object-fit: cover;
+    display: block;
+}
+
+.movie-info {
+    padding: 15px;
+}
+
+.movie-info h3 {
+    font-size: 1.3em;
+    margin-bottom: 10px;
+    color: var(--primary-color);
+}
+
+.details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.rating {
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    color: var(--background-color);
+    font-size: 0.9em;
+}
+
+/* Colores de Rating */
+.rating.green { background-color: #4CAF50; } /* Alto */
+.rating.orange { background-color: #ff9800; } /* Medio */
+.rating.red { background-color: #f44336; } /* Bajo */
+
+.date {
+    font-size: 0.9em;
+    color: #ccc;
+}
+
+.overview {
+    margin-top: 15px;
+    border-top: 1px solid #333;
+    padding-top: 10px;
+    max-height: 100px; /* Limita la altura para no saturar */
+    overflow: hidden;
+}
+
+.overview h4 {
+    margin-bottom: 5px;
+    color: var(--secondary-color);
+    font-size: 1em;
+}
+
+.overview p {
+    font-size: 0.85em;
+    color: #aaa;
+}
+
+/* Mensajes de Estado */
+#loading-message, .no-results, .error-message {
+    grid-column: 1 / -1; /* Ocupa todo el ancho */
+    text-align: center;
+    padding: 50px;
+    font-size: 1.5em;
+    color: var(--primary-color);
+}
+
+.error-message {
+    color: #ff0000;
+}
+
+/* Footer */
+.footer {
+    background-color: #000;
+    color: #777;
+    text-align: center;
+    padding: 15px;
+    margin-top: 30px;
+    font-size: 0.9em;
+}
+
+/* Media Queries para Responsividad */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+
+    .main-content {
+        padding: 20px;
+    }
+
+    #search-form {
+        width: 100%;
+    }
+    
+    #search-input {
+        width: 100%;
+        border-radius: 5px;
+    }
+
+    #search-form button {
+        display: none; /* Ocultar botón en móvil, ya que el input tiene enter */
+    }
+
+    .movies-grid {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 20px;
+    }
+}
