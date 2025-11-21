@@ -1,0 +1,171 @@
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@700;800&family=Red+Hat+Display:wght@400;500&display=swap');
+
+:root {
+  --primary-bg: #FBFAFB;
+  --primary-purple: #5C218A;
+  --purple-dark: #3E0F64;
+  --text-main: #2A0646;
+  --text-light: #EEEAF2;
+}
+.inactive {
+  display: none !important;
+}
+body {
+  font-family: 'Red Hat Display', sans-serif;
+  background-color: var(--primary-bg);
+  color: var(--text-main);
+  margin: 0;
+  padding: 0;
+}
+.header-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 20px;
+  background-color: var(--primary-purple);
+  color: white;
+}
+.header-title {
+  font-size: 28px;
+}
+.header-searchForm {
+  display: flex;
+  width: 80%;
+}
+.header-searchForm input {
+  flex: 1;
+  border: none;
+  padding: 10px;
+  border-radius: 8px 0 0 8px;
+  background-color: #EEEAF2;
+}
+.header-searchForm button {
+  border: none;
+  background-color: var(--purple-dark);
+  color: white;
+  border-radius: 0 8px 8px 0;
+  cursor: pointer;
+}
+.trendingPreview-section {
+  padding: 24px;
+  position: relative;
+}
+.trendingPreview-movieList {
+  display: flex;
+  gap: 16px;
+  overflow-x: hidden; /* ocultamos scroll nativo */
+  padding: 10px 0;
+  scroll-behavior: smooth;
+}
+.trendingPreview-btn {
+  display: none; /* eliminamos botón flotante */
+}
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0,0,0,0.5);
+  border: none;
+  color: white;
+  font-size: 24px;
+  padding: 8px 12px;
+  cursor: pointer;
+  z-index: 5;
+  border-radius: 6px;
+}
+.arrow-left {
+  left: 10px;
+}
+.arrow-right {
+  right: 10px;
+}
+.categoriesPreview-container {
+  padding: 24px;
+}
+.categoriesPreview-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.category-container {
+  flex: 1 1 calc(33.3% - 10px);
+  padding: 12px;
+  border-radius: 10px;
+  text-align: center;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+.category-container:hover {
+  transform: scale(1.05);
+}
+.movie-card {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: 180px;
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.movie-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.18);
+}
+.movie-card img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
+.movie-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 10px;
+  font-size: 13px;
+}
+.movie-title {
+  font-size: 15px;
+  font-weight: 600;
+  text-align: center;
+  padding: 0 10px 10px;
+}
+.category {
+  padding: 2px 8px;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 12px;
+}
+.accion { background-color: #ff4b4b; }
+.comedia { background-color: #4bcf83; }
+.drama { background-color: #3f51b5; }
+.scifi { background-color: #9b59b6; }
+.terror { background-color: #2f3640; }
+.aventura { background-color: #f39c12; }
+.animacion { background-color: #b968b1; }
+.crimen { background-color: #34495e; }
+.documental { background-color: #16a085; }
+.familia { background-color: #0d9797; }
+.fantasia { background-color: #8e44ad; }
+.historia { background-color: #d35400; }
+.musica { background-color: #e74c3c; }
+.misterio { background-color: #7f8c8d; }
+.romance { background-color: #e84393; }
+.pelicula { background-color: #2d3436; }
+.suspense { background-color: #636e72; }
+.belica { background-color: #c0392b; }
+.western { background-color: #d2b48c; }
+.ciencia-ficcion { background-color: #2980b9; }
+.pelicula-de-tv{ background-color: #27ae60; }
+footer {
+  position: absolute;
+  width: 99%;
+  bottom: 0;
+  background-color: var(--primary-purple);
+  color: var(--text-light);
+  text-align: center;
+  padding: 12px;
+  margin-top: 40px;
+}

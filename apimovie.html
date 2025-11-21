@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles/apimovie.css">
+</head>
+<body>
+    <!-- HEADER -->
+  <header id="header" class="header-container">
+    <h1 class="header-title">🎬 CineApp</h1>
+    <form id="searchForm" class="header-searchForm">
+      <input type="text" class="input-search" placeholder="Buscar películas..." />
+      <button id="searchBtn">🔍</button>
+    </form>
+  </header>
+  <!-- HOME: TENDENCIAS -->
+  <section id="trendingPreview" class="trendingPreview-section">
+    <h2 class="trendingPreview-title">Tendencias</h2>
+    <div class="trendingPreview-movieList"></div>
+    <button class="trendingPreview-btn">Ver más</button>
+  </section>
+
+  <!-- HOME: CATEGORÍAS -->
+  <section id="categoriesPreview" class="categoriesPreview-section">
+    <h2 class="categoriesPreview-title">Categorías</h2>
+    <div class="categoriesPreview-list"></div>
+  </section>
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 CineApp | Inspirado por tu amor al cine 🍿</p>
+  </footer>
+  <script>// Selecciona contenedor y flechas
+const trendingList = document.querySelector(".trendingPreview-movieList");
+
+// Crear flechas dinámicamente
+const arrowLeft = document.createElement("button");
+arrowLeft.className = "carousel-arrow arrow-left";
+arrowLeft.textContent = "◀";
+const arrowRight = document.createElement("button");
+arrowRight.className = "carousel-arrow arrow-right";
+arrowRight.textContent = "▶";
+
+document.querySelector("#trendingPreview").appendChild(arrowLeft);
+document.querySelector("#trendingPreview").appendChild(arrowRight);
+document.querySelector("#trendingPreview").appendChild(arrowLeft);
+    document.querySelector("#trendingPreview").appendChild(arrowRight);
+    const scrollAmount = 400; // pixeles por click
+    arrowLeft.addEventListener("click", () => {
+    trendingList.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+    });
+    arrowRight.addEventListener("click", () => {
+    trendingList.scrollBy({ left: scrollAmount, behavior: "smooth" });
+    });
+    </script>
+    <script src="src/navegation.js"></script>
+    <script src="src/node.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="/src/secret.js"></script>
+    <script src="/src/apimovie.js"></script>
+</body>
+</html>

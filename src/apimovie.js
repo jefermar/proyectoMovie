@@ -1,7 +1,14 @@
-console.log('hi');
+console.log("Probando");
+const api = axios.create({
+    baseURL : "https://api.themoviedb.org/3/",
+    headers: {"Content-Type": "application/json; charset=utf-8"},
+    params:{
+        "api_key": API_KEY,
+        "language": "es-ES",
+    }
+});
 async function getPopularMovies() {
-    const respuesta= await fetch("https://api.themoviedb.org/3/movie/popular?language=es-ES&api_key="+ API_KEY);
-    const data = await respuesta.json();
+    const {data} = await api("movie/popular");
     const movies = data.results;
     console.log(movies);
     movies.forEach(movie => {
@@ -22,15 +29,14 @@ async function getPopularMovies() {
 
 }
 async function getCategoriesMovies(){
-    const respuesta= await fetch("https://api.themoviedb.org/3/genre/movie/list?api_key="+ API_KEY+"&language=es-ES");
-    const data = await respuesta.json();
+    const {data} = await api("genre/movie/list?");
     const categories = data.genres;
     console.log(categories);
     categories.forEach(category=>{
         const categoryList = document.querySelector(".categoriesPreview-list");
         categoryList.innerHTML += `
             <div class="category-container ${category.name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\s+/g, '-')}">
-            </div>`;
+            ${category.name}</div>`;
     });
 }
 getCategoriesMovies();
